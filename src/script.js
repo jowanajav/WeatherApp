@@ -23,6 +23,7 @@ function formatDate(date) {
 }
 
 function searchData(response) {
+  console.log(response);
   let country = response.data.sys.country;
   let displayCountry = document.querySelector("#disp-country");
   let status = response.data.weather[0].description;
