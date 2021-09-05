@@ -1,0 +1,117 @@
+body {
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+h1 {
+  font-style: italic;
+  text-align: center;
+  margin: 0 auto;
+  padding: 40px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  height: 28px;
+  text-align: left;
+}
+
+.container {
+  width: 700px;
+}
+
+.card {
+  margin-top: 50px;
+  padding: 10px;
+}
+
+.search-form {
+  padding-left: 25px;
+}
+
+.card-disp {
+  padding-left: 22px;
+}
+
+.city {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.main-disp {
+  padding-bottom: 20px;
+}
+
+.main-temp {
+  position: relative;
+  font-size: 50px;
+  padding: 30px 10px 0 10px;
+}
+
+.unit {
+  position: relative;
+  top: -24px;
+}
+
+.min-maxTemp {
+  font-style: italic;
+  color: gray;
+}
+
+.main-maxTemp {
+  font-weight: bold;
+}
+
+.main-minTemp {
+  font-size: 12px;
+}
+
+.unit-mainMin {
+  font-size: 12px;
+}
+
+.feelsSentence {
+  font-size: 12px;
+}
+
+.feelsLike {
+  color: gray;
+  font-style: italic;
+  font-size: 15px;
+}
+
+.preci-wind {
+  padding-top: 10px;
+}
+
+.bottom-info {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.bottom-day {
+  font-size: 12px;
+}
+
+.bottom-status {
+  font-size: 12px;
+}
+
+.bottom-minTemp {
+  font-size: 12px;
+}
+
+#main-icon {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  top: -8px;
+  padding-bottom: 10px;
+}
+
+#bottom-icon {
+  width: 60px;
+  height: 60px;
+  padding: 10px 0 10px 0;
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/fe99063634.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/styles.css" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1><i class="fas fa-sun"></i>Weather App</h1>
+        <form class="search-form">
+          <div class="row">
+            <div class="col-8">
+              <input
+                type="search"
+                class="form-control"
+                id="input-city"
+                placeholder="Enter city"
+                autocomplete="off"
+                autofocus
+              />
+            </div>
+            <div class="col-4">
+              <button
+                type="submit"
+                value="Search"
+                class="btn btn-primary"
+                id="search-city"
+              >
+                Search
+              </button>
+              <button type="submit" class="btn btn-primary" id="current-loc">
+                Current
+              </button>
+            </div>
+          </div>
+        </form>
+        <hr />
+        <div class="card-disp">
+          <div class="location">
+            <span class="city" id="disp-city">Manila </span>
+            <span class="country" id="disp-country"> PH</span>
+          </div>
+          <div class="date" id="date-today">8/31 Tuesday 22:00</div>
+          <div class="weather" id="status-today">Partly Cloudy</div>
+          <div class="row main-disp">
+            <div class="col-5">
+              <span class="today-icon">
+                <img src="icons/rain.svg" alt="Rainy Icon" id="main-icon" />
+              </span>
+              <span class="main-temp" id="main-temperature">19</span>
+              <span class="unit">°C</span>
+            </div>
+            <div class="col-4 preci-wind">
+              <div class="precipitation">Precipitation: 56%</div>
+              <div class="wind">Wind: 1km/h</div>
+            </div>
+            <div class="feelsLike">
+              <span class="feelsSentence">Feels Like: </span>
+              <span class="feelTemp" id="feels-like"> 20</span>
+              <span class="feelUnit">°C</span>
+            </div>
+            <div class="min-maxTemp">
+              <span class="main-maxTemp" id="main-max">19 </span>
+              <span class="unit-mainMax">°C</span>
+              <span class="main-minTemp" id="main-min">/ 16</span>
+              <span class="unit-mainMin">°C</span>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-info">
+          <div class="row">
+            <div class="col-2">
+              <span class="bottom-date">9/3</span>
+              <span class="bottom-day">Fri</span>
+            </div>
+            <div class="col-2">
+              <span class="bottom-date">9/4</span>
+              <span class="bottom-day">Sat</span>
+            </div>
+            <div class="col-2">
+              <span class="bottom-date">9/5</span>
+              <span class="bottom-day">Sun</span>
+            </div>
+            <div class="col-2">
+              <span class="bottom-date">9/6</span>
+              <span class="bottom-day">Mon</span>
+            </div>
+            <div class="col-2">
+              <span class="bottom-date">9/7</span>
+              <span class="bottom-day">Tue</span>
+            </div>
+            <div class="col-2">
+              <span class="bottom-date">9/8</span>
+              <span class="bottom-day">Wed</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <img
+                src="icons/atmosphere.svg"
+                alt="Atmosphere Icon"
+                id="bottom-icon"
+              />
+            </div>
+            <div class="col-2">
+              <img
+                src="icons/clear.svg"
+                alt="Clear Sky Icon"
+                id="bottom-icon"
+              />
+            </div>
+            <div class="col-2">
+              <img src="icons/clouds.svg" alt="Cloudy Icon" id="bottom-icon" />
+            </div>
+            <div class="col-2">
+              <img
+                src="icons/drizzle.svg"
+                alt="Drizzle Icon"
+                id="bottom-icon"
+              />
+            </div>
+            <div class="col-2">
+              <img src="icons/Rain.svg" alt="Rain Icon" id="bottom-icon" />
+            </div>
+            <div class="col-2">
+              <img src="icons/snow.svg" alt="Snow Icon" id="bottom-icon" />
+            </div>
+          </div>
+          <div class="row bottom-status">
+            <div class="col-2">Sunny</div>
+            <div class="col-2">Sunny</div>
+            <div class="col-2">Sunny</div>
+            <div class="col-2">Sunny</div>
+            <div class="col-2">Sunny</div>
+            <div class="col-2">Sunny</div>
+          </div>
+          <div class="row bottom-maxTemp">
+            <div class="col-2">19°C</div>
+            <div class="col-2">19°C</div>
+            <div class="col-2">19°C</div>
+            <div class="col-2">19°C</div>
+            <div class="col-2">19°C</div>
+            <div class="col-2">19°C</div>
+          </div>
+          <div class="row bottom-minTemp">
+            <div class="col-2">/ 19°C</div>
+            <div class="col-2">/ 19°C</div>
+            <div class="col-2">/ 19°C</div>
+            <div class="col-2">/ 19°C</div>
+            <div class="col-2">/ 19°C</div>
+            <div class="col-2">/ 19°C</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="src/script.js"></script>
+  </body>
+</html>
