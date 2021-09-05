@@ -25,33 +25,23 @@ function formatDate(date) {
 function searchData(response) {
   let country = response.data.sys.country;
   let displayCountry = document.querySelector("#disp-country");
-  displayCountry.innerHTML = `${country}`;
-
   let status = response.data.weather[0].description;
-  let statusCapitalized = status.split(" ");
-
-  for (let i = 0; i < statusCapitalized.length; i++) {
-    statusCapitalized[i] =
-      statusCapitalized[i][0].toUpperCase() + statusCapitalized[i].substr(1);
-  }
-
   let cityStatus = document.querySelector("#status-today");
-  cityStatus.innerHTML = `${statusCapitalized.join(" ")}`;
-
   let temp = Math.round(response.data.main.temp);
   let cityTemp = document.querySelector("#main-temperature");
-  cityTemp.innerHTML = `${temp}`;
-
   let feelsData = Math.round(response.data.main.feels_like);
   let feelsLike = document.querySelector("#feels-like");
-  feelsLike.innerHTML = `${feelsData} `;
-
   let maxTempData = Math.round(response.data.main.temp_max);
   let maxTemp = document.querySelector("#main-max");
-  maxTemp.innerHTML = `${maxTempData} `;
-
   let minTempData = Math.round(response.data.main.temp_min);
   let minTemp = document.querySelector("#main-min");
+
+  displayCountry.innerHTML = `${country}`;
+
+  cityStatus.innerHTML = `${status}`;
+  cityTemp.innerHTML = `${temp}`;
+  feelsLike.innerHTML = `${feelsData} `;
+  maxTemp.innerHTML = `${maxTempData} `;
   minTemp.innerHTML = `/ ${minTempData}`;
 }
 
@@ -81,15 +71,9 @@ function searchCity(event) {
 
 function currentCity(response) {
   let currentCity = response.data.name;
-  let currentCapitalized = currentCity.split(" ");
   let updateCity = document.querySelector("#disp-city");
 
-  for (let i = 0; i < currentCapitalized.length; i++) {
-    currentCapitalized[i] =
-      currentCapitalized[i][0].toUpperCase() + currentCapitalized[i].substr(1);
-  }
-
-  updateCity.innerHTML = `${currentCapitalized.join(" ")}`;
+  updateCity.innerHTML = `${currentCity}`;
 
   searchData(response);
 }
