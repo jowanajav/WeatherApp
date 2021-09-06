@@ -42,6 +42,7 @@ function searchData(response) {
   let cityHumidity = document.querySelector("#humidity");
   let wind = response.data.wind.speed;
   let displayWind = document.querySelector("#wind");
+  let iconData = document.querySelector("#main-icon");
 
   displayCountry.innerHTML = `${country}`;
   displayDate.innerHTML = `${date}`;
@@ -52,6 +53,10 @@ function searchData(response) {
   minTemp.innerHTML = `/ ${minTempData}`;
   cityHumidity.innerHTML = `${humidity}`;
   displayWind.innerHTML = `${wind}`;
+  iconData.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 function searchCity(event) {
