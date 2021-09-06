@@ -38,6 +38,10 @@ function searchData(response) {
   let maxTemp = document.querySelector("#main-max");
   let minTempData = Math.round(response.data.main.temp_min);
   let minTemp = document.querySelector("#main-min");
+  let humidity = response.data.main.humidity;
+  let cityHumidity = document.querySelector("#humidity");
+  let wind = response.data.wind.speed;
+  let displayWind = document.querySelector("#wind");
 
   displayCountry.innerHTML = `${country}`;
   displayDate.innerHTML = `${date}`;
@@ -46,6 +50,8 @@ function searchData(response) {
   feelsLike.innerHTML = `${feelsData} `;
   maxTemp.innerHTML = `${maxTempData} `;
   minTemp.innerHTML = `/ ${minTempData}`;
+  cityHumidity.innerHTML = `${humidity}`;
+  displayWind.innerHTML = `${wind}`;
 }
 
 function searchCity(event) {
