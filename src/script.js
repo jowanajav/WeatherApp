@@ -26,9 +26,9 @@ function searchData(response) {
   console.log(response);
   let country = response.data.sys.country;
   let displayCountry = document.querySelector("#disp-country");
-  let status = response.data.weather[0].description;
-  let cityStatus = document.querySelector("#status-today");
-  let temp = Math.round(response.data.main.temp);
+  let cityWeather = response.data.weather[0].description;
+  let weatherDescription = document.querySelector("#description");
+  let temperature = Math.round(response.data.main.temp);
   let cityTemp = document.querySelector("#main-temperature");
   let feelsData = Math.round(response.data.main.feels_like);
   let feelsLike = document.querySelector("#feels-like");
@@ -38,9 +38,8 @@ function searchData(response) {
   let minTemp = document.querySelector("#main-min");
 
   displayCountry.innerHTML = `${country}`;
-
-  cityStatus.innerHTML = `${status}`;
-  cityTemp.innerHTML = `${temp}`;
+  weatherDescription.innerHTML = `${cityWeather}`;
+  cityTemp.innerHTML = `${temperature}`;
   feelsLike.innerHTML = `${feelsData} `;
   maxTemp.innerHTML = `${maxTempData} `;
   minTemp.innerHTML = `/ ${minTempData}`;
