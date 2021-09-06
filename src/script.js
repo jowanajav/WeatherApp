@@ -1,4 +1,5 @@
-function formatDate(date) {
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
   let days = [
     "Sunday",
     "Monday",
@@ -8,16 +9,15 @@ function formatDate(date) {
     "Friday",
     "Saturday",
   ];
-
-  let currentMonth = date.getMonth();
-  let currentDay = days[date.getDay()];
-  let currentDate = date.getDate();
-  let currentHour = date.getHours();
-  let currentMinute = ("0" + date.getMinutes()).slice(-2);
+  let cityMonth = date.getMonth();
+  let cityDate = date.getDate();
+  let cityDay = days[date.getDay()];
+  let cityHour = date.getHours();
+  let cityMinute = ("0" + date.getMinutes()).slice(-2);
 
   let formattedDate = `${
-    currentMonth + 1
-  }/${currentDate} ${currentDay} ${currentHour}:${currentMinute}`;
+    cityMonth + 1
+  }/${cityDate} ${cityDay} ${cityHour}:${cityMinute}`;
 
   return formattedDate;
 }
@@ -26,6 +26,8 @@ function searchData(response) {
   console.log(response);
   let country = response.data.sys.country;
   let displayCountry = document.querySelector("#disp-country");
+  let date = formatDate(response.data.dt * 1000);
+  let displayDate = document.querySelector("#date-today");
   let cityWeather = response.data.weather[0].description;
   let weatherDescription = document.querySelector("#description");
   let temperature = Math.round(response.data.main.temp);
@@ -38,6 +40,7 @@ function searchData(response) {
   let minTemp = document.querySelector("#main-min");
 
   displayCountry.innerHTML = `${country}`;
+  displayDate.innerHTML = `${date}`;
   weatherDescription.innerHTML = `${cityWeather}`;
   cityTemp.innerHTML = `${temperature}`;
   feelsLike.innerHTML = `${feelsData} `;
@@ -92,10 +95,6 @@ function getCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(getPosition);
 }
-
-let current = new Date();
-let dateToday = document.querySelector("#date-today");
-dateToday.innerHTML = formatDate(current);
 
 let searchButton = document.querySelector("#search-city");
 searchButton.addEventListener("click", searchCity);
