@@ -13,8 +13,7 @@ function formatDate(timestamp) {
   let cityDate = date.getDate();
   let cityDay = days[date.getDay()];
   let cityHour = date.getHours();
-  let cityMinute = date.getMinutes();
-  // let cityMinute = ("0" + date.getMinutes()).slice(-2);
+  let cityMinute = ("0" + date.getMinutes()).slice(-2);
 
   let formattedDate = `${
     cityMonth + 1
@@ -59,7 +58,7 @@ function searchData(response) {
   displayWind.innerHTML = `${wind}`;
   iconData.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
 }
 
@@ -74,13 +73,8 @@ function searchCity(city) {
 function handleCity(event) {
   event.preventDefault();
   let searchedCity = document.querySelector("#input-city");
-  let displayCity = document.querySelector("#disp-city");
 
-  if (searchedCity.value.length === 0) {
-    displayCity.innerHTML = `Enter a City`;
-  } else {
-    searchCity(searchedCity.value);
-  }
+  searchCity(searchedCity.value);
 }
 
 function currentCity(response) {
