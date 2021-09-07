@@ -28,7 +28,7 @@
     <div class="container">
       <div class="card">
         <h1><i class="fas fa-sun"></i>Weather App</h1>
-        <form class="search-form">
+        <form id="search-form">
           <div class="row">
             <div class="col-8">
               <input
@@ -58,7 +58,7 @@
         <hr />
         <div class="card-disp">
           <div class="location">
-            <span class="city" id="disp-city">Manila </span>
+            <span class="city" id="disp-city"> </span>
             <span class="country" id="disp-country"> </span>
           </div>
           <div class="date" id="date-today"></div>
@@ -66,30 +66,26 @@
           <div class="row main-disp">
             <div class="col-5">
               <span class="today-icon">
-                <img
-                  src="http://openweathermap.org/img/wn/01d@2x.png"
-                  alt="Rainy Icon"
-                  id="main-icon"
-                />
+                <img src="" alt="" id="main-icon" />
               </span>
-              <span class="main-temp" id="main-temperature">10</span>
+              <span class="main-temp" id="main-temperature"></span>
               <span class="unit">°C</span>
               <span class="unit"> | °F</span>
             </div>
             <div class="col-4 humi-wind">
-              <div class="humid">Humidity: <span id="humidity">10</span>%</div>
-              <div class="windSpeed">Wind: <span id="wind">1</span>km/h</div>
+              <div class="humid">Humidity: <span id="humidity"></span>%</div>
+              <div class="windSpeed">Wind: <span id="wind"></span>km/h</div>
             </div>
             <div class="feelsLike">
               <span class="feelsSentence">Feels Like: </span>
-              <span class="feelTemp" id="feels-like"> 10</span>
+              <span class="feelTemp" id="feels-like"> </span>
               <span class="feelUnit">°C</span>
             </div>
             <div class="min-maxTemp">
-              <span class="main-maxTemp" id="main-max"> 10</span>
-              <span class="unit-mainMax">10 °C</span>
+              <span class="main-maxTemp" id="main-max"> </span>
+              <span class="unit-mainMax"> °C</span>
               <span class="main-minTemp" id="main-min">/ </span>
-              <span class="unit-mainMin">10 °C</span>
+              <span class="unit-mainMin"> °C</span>
             </div>
           </div>
         </div>

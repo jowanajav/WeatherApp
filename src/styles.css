@@ -26,10 +26,6 @@ h2 {
   padding: 10px;
 }
 
-.search-form {
-  padding-left: 25px;
-}
-
 .card-disp {
   padding-left: 22px;
 }
@@ -104,6 +100,10 @@ h2 {
 
 .bottom-minTemp {
   font-size: 12px;
+}
+
+#search-form {
+  padding-left: 25px;
 }
 
 #main-icon {
