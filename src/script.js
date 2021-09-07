@@ -74,7 +74,13 @@ function searchCity(city) {
 function handleCity(event) {
   event.preventDefault();
   let searchedCity = document.querySelector("#input-city");
-  searchCity(searchedCity.value);
+  let displayCity = document.querySelector("#disp-city");
+
+  if (searchedCity.value.length === 0) {
+    displayCity.innerHTML = `Enter a City`;
+  } else {
+    searchCity(searchedCity.value);
+  }
 }
 
 function currentCity(response) {
