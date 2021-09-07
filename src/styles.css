@@ -50,7 +50,7 @@ h2 {
 .main-temp {
   position: relative;
   font-size: 50px;
-  padding: 30px 10px 0 10px;
+  padding: 30px 10px 0 0;
 }
 
 .unit {
@@ -107,8 +107,8 @@ h2 {
 }
 
 #main-icon {
-  width: 60px;
-  height: 60px;
+  /* width: 60px;
+  height: 60px; */
   position: relative;
   top: -8px;
   padding-bottom: 10px;

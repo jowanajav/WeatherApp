@@ -1,5 +1,5 @@
 function formatDate(timestamp) {
-  let date = new Date(timestamp);
+  let date = new Date(timestamp * 1000);
   let days = [
     "Sunday",
     "Monday",
@@ -13,7 +13,8 @@ function formatDate(timestamp) {
   let cityDate = date.getDate();
   let cityDay = days[date.getDay()];
   let cityHour = date.getHours();
-  let cityMinute = ("0" + date.getMinutes()).slice(-2);
+  let cityMinute = date.getMinutes();
+  // let cityMinute = ("0" + date.getMinutes()).slice(-2);
 
   let formattedDate = `${
     cityMonth + 1
@@ -26,7 +27,7 @@ function searchData(response) {
   console.log(response);
   let country = response.data.sys.country;
   let displayCountry = document.querySelector("#disp-country");
-  let date = formatDate(response.data.dt * 1000);
+  let date = formatDate(response.data.dt);
   let displayDate = document.querySelector("#date-today");
   let cityWeather = response.data.weather[0].description;
   let weatherDescription = document.querySelector("#description");
