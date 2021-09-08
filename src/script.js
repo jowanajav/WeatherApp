@@ -1,5 +1,5 @@
 function formatDate(timestamp) {
-  let date = new Date(timestamp * 1000);
+  let date = getDate(timestamp);
   let days = [
     "Sunday",
     "Monday",
@@ -19,16 +19,25 @@ function formatDate(timestamp) {
     cityMonth + 1
   }/${cityDate} ${cityDay} ${cityHour}:${cityMinute}`;
 
+  console.log(formattedDate);
   return formattedDate;
 }
 
+function getDate(timezone) {
+  let date = new Date();
+  let localOffset = date.getTimezoneOffset() * 60000;
+  let utc = Date.now() + localOffset;
+  let localTimezone = utc + timezone * 1000;
+
+  return new Date(localTimezone);
+}
+
 function searchData(response) {
-  console.log(response);
   let city = response.data.name;
   let displayCity = document.querySelector("#disp-city");
   let country = response.data.sys.country;
   let displayCountry = document.querySelector("#disp-country");
-  let date = formatDate(response.data.dt);
+  let date = formatDate(response.data.timezone);
   let displayDate = document.querySelector("#date-today");
   let cityWeather = response.data.weather[0].description;
   let weatherDescription = document.querySelector("#description");
@@ -101,7 +110,7 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(getPosition);
 }
 
-let searchButton = document.querySelector("#search-form");
+let searchButton = document.querySelector("#search-city");
 searchButton.addEventListener("click", handleCity);
 
 let currentLocButton = document.querySelector("#current-loc");
