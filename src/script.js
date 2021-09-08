@@ -19,7 +19,6 @@ function formatDate(timestamp) {
     cityMonth + 1
   }/${cityDate} ${cityDay} ${cityHour}:${cityMinute}`;
 
-  console.log(formattedDate);
   return formattedDate;
 }
 
@@ -41,7 +40,6 @@ function searchData(response) {
   let displayDate = document.querySelector("#date-today");
   let cityWeather = response.data.weather[0].description;
   let weatherDescription = document.querySelector("#description");
-  let temperature = Math.round(response.data.main.temp);
   let cityTemp = document.querySelector("#main-temperature");
   let feelsData = Math.round(response.data.main.feels_like);
   let feelsLike = document.querySelector("#feels-like");
@@ -55,11 +53,13 @@ function searchData(response) {
   let displayWind = document.querySelector("#wind");
   let iconData = document.querySelector("#main-icon");
 
+  celciusTemperature = Math.round(response.data.main.temp);
+
   displayCity.innerHTML = `${city}`;
   displayCountry.innerHTML = `${country}`;
   displayDate.innerHTML = `${date}`;
   weatherDescription.innerHTML = `${cityWeather}`;
-  cityTemp.innerHTML = `${temperature}`;
+  cityTemp.innerHTML = `${celciusTemperature}`;
   feelsLike.innerHTML = `${feelsData} `;
   maxTemp.innerHTML = `${maxTempData} `;
   minTemp.innerHTML = `/ ${minTempData}`;
@@ -110,10 +110,35 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(getPosition);
 }
 
+function displayFahrenheit(event) {
+  event.preventDefault();
+  let convertToFahrenheit = (celciusTemperature * 9) / 5 + 32;
+  let fahrenheitTemp = document.querySelector("#main-temperature");
+  celciusUnit.classList.remove("active");
+  fahrenheitUnit.classList.add("active");
+  fahrenheitTemp.innerHTML = Math.round(convertToFahrenheit);
+}
+
+function displayCelcius(event) {
+  event.preventDefault();
+  let celciusTemp = document.querySelector("#main-temperature");
+  fahrenheitUnit.classList.remove("active");
+  celciusUnit.classList.add("active");
+  celciusTemp.innerHTML = celciusTemperature;
+}
+
+let celciusTemperature = null;
+
 let searchButton = document.querySelector("#search-city");
 searchButton.addEventListener("click", handleCity);
 
 let currentLocButton = document.querySelector("#current-loc");
 currentLocButton.addEventListener("click", getCurrentLocation);
 
-searchCity(`Manila`);
+let fahrenheitUnit = document.querySelector("#fahrenheit-unit");
+fahrenheitUnit.addEventListener("click", displayFahrenheit);
+
+let celciusUnit = document.querySelector("#celcius-unit");
+celciusUnit.addEventListener("click", displayCelcius);
+
+searchCity(`Tokyo`);

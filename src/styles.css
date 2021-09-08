@@ -17,6 +17,10 @@ h2 {
   text-transform: capitalize;
 }
 
+a {
+  text-decoration: none;
+}
+
 .container {
   width: 700px;
 }
@@ -52,6 +56,15 @@ h2 {
 .unit {
   position: relative;
   top: -24px;
+}
+
+.unit .active {
+  color: rgb(33, 33, 33);
+  cursor: default;
+}
+
+.unit .active:hover {
+  text-decoration: none;
 }
 
 .min-maxTemp {
