@@ -31,6 +31,19 @@ function getDate(timezone) {
   return new Date(localTimezone);
 }
 
+// function getTemp(temperature) {
+//   // let cityTemp = document.querySelector("#main-temperature");
+//   let celciusUnit = document.querySelector("#celcius-unit");
+
+//   // cityTemp.innerHTML = `${temperature}`;
+
+//   if (celciusUnit === document.activeElement) {
+//     displayCelcius;
+//   } else {
+//     displayFahrenheit;
+//   }
+// }
+
 function searchData(response) {
   let city = response.data.name;
   let displayCity = document.querySelector("#disp-city");
@@ -39,13 +52,13 @@ function searchData(response) {
   let date = formatDate(response.data.timezone);
   let displayDate = document.querySelector("#date-today");
   let cityWeather = response.data.weather[0].description;
-  let weatherDescription = document.querySelector("#description");
   let cityTemp = document.querySelector("#main-temperature");
-  let feelsData = Math.round(response.data.main.feels_like);
+  let weatherDescription = document.querySelector("#description");
+  // let feelsData = Math.round(response.data.main.feels_like);
   let feelsLike = document.querySelector("#feels-like");
-  let maxTempData = Math.round(response.data.main.temp_max);
+  // let maxTempData = Math.round(response.data.main.temp_max);
   let maxTemp = document.querySelector("#main-max");
-  let minTempData = Math.round(response.data.main.temp_min);
+  // let minTempData = Math.round(response.data.main.temp_min);
   let minTemp = document.querySelector("#main-min");
   let humidity = response.data.main.humidity;
   let cityHumidity = document.querySelector("#humidity");
@@ -54,21 +67,26 @@ function searchData(response) {
   let iconData = document.querySelector("#main-icon");
 
   celciusTemperature = Math.round(response.data.main.temp);
+  feelsCelciusTemp = Math.round(response.data.main.feels_like);
+  maxCelciusTemp = Math.round(response.data.main.temp_max);
+  minCelciusTemp = Math.round(response.data.main.temp_min);
 
   displayCity.innerHTML = `${city}`;
   displayCountry.innerHTML = `${country}`;
   displayDate.innerHTML = `${date}`;
   weatherDescription.innerHTML = `${cityWeather}`;
   cityTemp.innerHTML = `${celciusTemperature}`;
-  feelsLike.innerHTML = `${feelsData} `;
-  maxTemp.innerHTML = `${maxTempData} `;
-  minTemp.innerHTML = `/ ${minTempData}`;
+  feelsLike.innerHTML = `${feelsCelciusTemp}°C`;
+  maxTemp.innerHTML = `${maxCelciusTemp}°C`;
+  minTemp.innerHTML = `/ ${minCelciusTemp}°C`;
   cityHumidity.innerHTML = `${humidity}`;
   displayWind.innerHTML = `${wind}`;
   iconData.setAttribute(
     "src",
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+
+  // getTemp(celciusTemperature);
 }
 
 function searchCity(city) {
@@ -112,22 +130,43 @@ function getCurrentLocation(event) {
 
 function displayFahrenheit(event) {
   event.preventDefault();
-  let convertToFahrenheit = (celciusTemperature * 9) / 5 + 32;
+  let tempToFahrenheit = (celciusTemperature * 9) / 5 + 32;
+  let feelsToFahrenheit = (feelsCelciusTemp * 9) / 5 + 32;
+  let maxToFahrenheit = (maxCelciusTemp * 9) / 5 + 32;
+  let minToFahrenheit = (minCelciusTemp * 9) / 5 + 32;
+
   let fahrenheitTemp = document.querySelector("#main-temperature");
+  let feelsLike = document.querySelector("#feels-like");
+  let maxTemp = document.querySelector("#main-max");
+  let minTemp = document.querySelector("#main-min");
+
   celciusUnit.classList.remove("active");
   fahrenheitUnit.classList.add("active");
-  fahrenheitTemp.innerHTML = Math.round(convertToFahrenheit);
+  fahrenheitTemp.innerHTML = Math.round(tempToFahrenheit);
+  feelsLike.innerHTML = `${Math.round(feelsToFahrenheit)}°F`;
+  maxTemp.innerHTML = `${Math.round(maxToFahrenheit)}°F`;
+  minTemp.innerHTML = `${Math.round(minToFahrenheit)}°F`;
 }
 
 function displayCelcius(event) {
   event.preventDefault();
   let celciusTemp = document.querySelector("#main-temperature");
+  let feelsLike = document.querySelector("#feels-like");
+  let maxTemp = document.querySelector("#main-max");
+  let minTemp = document.querySelector("#main-min");
+
   fahrenheitUnit.classList.remove("active");
   celciusUnit.classList.add("active");
   celciusTemp.innerHTML = celciusTemperature;
+  feelsLike.innerHTML = `${Math.round(feelsCelciusTemp)}°C`;
+  maxTemp.innerHTML = `${Math.round(maxCelciusTemp)}°C`;
+  minTemp.innerHTML = `${Math.round(minCelciusTemp)}°C`;
 }
 
 let celciusTemperature = null;
+let feelsCelciusTemp = null;
+let maxCelciusTemp = null;
+let minCelciusTemp = null;
 
 let searchButton = document.querySelector("#search-city");
 searchButton.addEventListener("click", handleCity);
