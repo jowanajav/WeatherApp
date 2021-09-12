@@ -104,16 +104,22 @@ a {
   padding-bottom: 30px;
 }
 
-.bottom-day {
-  font-size: 12px;
-}
-
+.bottom-day,
 .bottom-status {
   font-size: 12px;
 }
 
+.bottom-temp {
+  margin-top: 5px;
+}
+
 .bottom-minTemp {
   font-size: 12px;
+  opacity: 0.6;
+}
+
+.footer {
+  padding-top: 10px;
 }
 
 #search-form {
