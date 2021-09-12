@@ -44,6 +44,34 @@ function getDate(timezone) {
 //   }
 // }
 
+function displayForecast() {
+  let forecast = document.querySelector("#weather-forecast");
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let forecastHTML = `<div class="row">`;
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2">
+        <div class="forecast-date">
+          <span class="bottom-date">9/3</span>
+          <span class="bottom-day">${day}</span>
+        </div>
+        <img src="icons/snow.svg" alt="Snow Icon" id="bottom-icon" />
+        <div class="bottom-status">Sunny</div>
+        <div class="bottom-temp">
+          <span class="bottom-maxTemp">19°</span>
+          <span class="bottom-minTemp">19°</span>
+        </div>
+      </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecast.innerHTML = forecastHTML;
+}
+
 function searchData(response) {
   let city = response.data.name;
   let displayCity = document.querySelector("#disp-city");
@@ -181,3 +209,4 @@ let celciusUnit = document.querySelector("#celcius-unit");
 celciusUnit.addEventListener("click", displayCelcius);
 
 searchCity(`Tokyo`);
+displayForecast();
