@@ -107,6 +107,7 @@ a {
 .bottom-day,
 .bottom-status {
   font-size: 12px;
+  text-transform: capitalize;
 }
 
 .bottom-temp {

@@ -44,32 +44,72 @@ function getDate(timezone) {
 //   }
 // }
 
-function displayForecast() {
+function getForecastMonth(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let month = date.getMonth();
+
+  return month + 1;
+}
+
+function getForecastDate(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let dateDay = date.getDate();
+
+  return dateDay;
+}
+
+function getForecastDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecastData = response.data.daily;
+
+  console.log(forecastData);
   let forecast = document.querySelector("#weather-forecast");
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let forecastHTML = `<div class="row">`;
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecastData.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 7) {
+      forecastHTML =
+        forecastHTML +
+        `
       <div class="col-2">
         <div class="forecast-date">
-          <span class="bottom-date">9/3</span>
-          <span class="bottom-day">${day}</span>
+          <span class="bottom-date">${getForecastMonth(
+            forecastDay.dt
+          )}/${getForecastDate(forecastDay.dt)}</span>
+          <span class="bottom-day">${getForecastDay(forecastDay.dt)}</span>
         </div>
-        <img src="icons/snow.svg" alt="Snow Icon" id="bottom-icon" />
-        <div class="bottom-status">Sunny</div>
+        <img src="https://openweathermap.org/img/wn/${
+          forecastDay.weather[0].icon
+        }@2x.png" alt="Snow Icon" id="bottom-icon" />
+        <div class="bottom-status">${forecastDay.weather[0].description}</div>
         <div class="bottom-temp">
-          <span class="bottom-maxTemp">19°</span>
-          <span class="bottom-minTemp">19°</span>
+          <span class="bottom-maxTemp">${Math.round(
+            forecastDay.temp.max
+          )}°</span>
+          <span class="bottom-minTemp">${Math.round(
+            forecastDay.temp.min
+          )}°</span>
         </div>
       </div>
   `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
   forecast.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiKey = "471a6be89778a7f92e1728b2754d799c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function searchData(response) {
@@ -115,6 +155,7 @@ function searchData(response) {
   );
 
   // getTemp(celciusTemperature);
+  getForecast(response.data.coord);
 }
 
 function searchCity(city) {
@@ -139,6 +180,7 @@ function currentCity(response) {
   updateCity.innerHTML = `${currentCity}`;
 
   searchData(response);
+  getForecast(response.data.coord);
 }
 
 function getPosition(position) {
@@ -209,4 +251,3 @@ let celciusUnit = document.querySelector("#celcius-unit");
 celciusUnit.addEventListener("click", displayCelcius);
 
 searchCity(`Tokyo`);
-displayForecast();
