@@ -66,44 +66,6 @@ function getForecastDay(timestamp) {
   return days[day];
 }
 
-function displayFahrenheitForecast(response) {
-  let forecastData = response.data.daily;
-  let forecast = document.querySelector("#weather-forecast");
-  let forecastHTML = `<div class="row">`;
-
-  forecastData.forEach(function (forecastDay, index) {
-    if (index > 0 && index < 7) {
-      forecastHTML =
-        forecastHTML +
-        `
-      <div class="col-2">
-        <div class="forecast-date">
-          <span class="bottom-date">${getForecastMonth(
-            forecastDay.dt
-          )}/${getForecastDate(forecastDay.dt)}</span>
-          <span class="bottom-day">${getForecastDay(forecastDay.dt)}</span>
-        </div>
-        <img src="https://openweathermap.org/img/wn/${
-          forecastDay.weather[0].icon
-        }@2x.png" alt="Snow Icon" id="bottom-icon" />
-        <div class="bottom-status">${forecastDay.weather[0].description}</div>
-        <div class="bottom-temp">
-          <span class="bottom-maxTemp">${Math.round(
-            (forecastDay.temp.max * 9) / 5 + 32
-          )}°</span>
-          <span class="bottom-minTemp">${Math.round(
-            (forecastDay.temp.min * 9) / 5 + 32
-          )}°</span>
-        </div>
-      </div>
-  `;
-    }
-  });
-
-  forecastHTML = forecastHTML + `</div>`;
-  forecast.innerHTML = forecastHTML;
-}
-
 function displayForecast(response) {
   let forecastData = response.data.daily;
   let forecast = document.querySelector("#weather-forecast");
@@ -144,9 +106,9 @@ function displayForecast(response) {
 
 function getFahrenheitForecast(coordinates) {
   let apiKey = "471a6be89778a7f92e1728b2754d799c";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
 
-  axios.get(apiUrl).then(displayFahrenheitForecast);
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function getForecast(coordinates) {
