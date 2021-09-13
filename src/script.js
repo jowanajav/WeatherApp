@@ -153,7 +153,7 @@ function searchData(response) {
   cityTemp.innerHTML = `${celciusTemperature}`;
   feelsLike.innerHTML = `${feelsCelciusTemp}°C`;
   maxTemp.innerHTML = `${maxCelciusTemp}°C`;
-  minTemp.innerHTML = `/ ${minCelciusTemp}°C`;
+  minTemp.innerHTML = ` ${minCelciusTemp}°C`;
   cityHumidity.innerHTML = `${humidity}`;
   displayWind.innerHTML = `${wind}`;
   iconData.setAttribute(
