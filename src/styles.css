@@ -61,6 +61,7 @@ a {
 .unit .active {
   color: rgb(33, 33, 33);
   cursor: default;
+  font-weight: bold;
 }
 
 .unit .active:hover {
